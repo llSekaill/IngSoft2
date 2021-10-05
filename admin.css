@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("./images/fondomario.jpg");
+}
+
+/* Crear usuario */
+
+.form-registro {
+  width: 500px;
+  background: gold;
+  padding: 40px;
+  margin: auto;
+  margin-top: 100px;
+  border-width: 10px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: sienna;
+  border-color: maroon;
+}
+
+.fila {
+  display: flex;
+  justify-content: center;
+}
+
+.form-registro h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.formulario {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form-registro .botones {
+  width: 30%;
+  padding: 10px;
+  background: maroon;
+  color: white;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.form-registro .btn {
+  width: 45%;
+  padding: 10px;
+  background: maroon;
+  color: white;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.cancelar {
+  display: flex;
+  justify-content: center;
+}
+
+.form-registro .cancelar a {
+  padding: 10px;
+  margin: 5px;
+  font-size: 15px;
+  width: auto;
+}
+
+.warnings {
+  width: 200px;
+  text-align: center;
+  margin: auto;
+  color: #b06ab3;
+  padding-top: 20px;
+}
+
+/*------------------------------ Administrar------------------------ */
+
+.administrar {
+  width: 500px;
+  background: gold;
+  padding: 30px;
+  margin: auto;
+  margin-top: 100px;
+  border-width: 10px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: sienna;
+  border-color: maroon;
+}
+
+.administrar .btn {
+  width: 45%;
+  padding: 10px;
+  background: maroon;
+  color: white;
+  margin: 10px;
+  font-size: 16px;
+}
+
+.regresar {
+  display: flex;
+  justify-content: center;
+}
+
+.administrar .regresar a {
+  padding: 10px;
+  margin: 20px;
+  font-size: 15px;
+  width: auto;
+}
+
+.administrar h4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.administrar p {
+  font-size: 16px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.usuarios {
+  width: 500px;
+  background: gold;
+  padding: 40px;
+  margin: auto;
+  margin-top: 100px;
+  border-width: 10px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: sienna;
+  border-color: maroon;
+}
