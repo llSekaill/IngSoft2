@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../css/css.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+        <script src="../js/principal.js"></script>
+    </head>
+    <body class="container">
+        <!--Modal Login ! Hola Mundo-->
+        <div class="modal fade" id="ModalLogin" tabindex="-1" aria-labelledby="ModalLoginLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLoginLabel">Login</h5>
+                        <button id="butX" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="mensAlerta2" class="modal-body">
+                        
+                        <div>
+                            <input id="logusuario" class="form-control" placeholder="Ingrese su usuario">
+                        </div>
+                        <div>
+                            <input id="logpassword" type="password" class="form-control" placeholder="Ingrese su contraseña">                            
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-light" id="butAcceder"></a>Acceder</a></button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalRegistro" data-bs-dismiss="modal" id="butRegistrate"><a>Regístrate!</a></button>
+                        </div>
+                        <div id="alerta2"></div>
+                        </div>
+                        
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+        <!--Modal Registrate-->
+        <div class="modal fade" id="ModalRegistro" tabindex="-1" aria-labelledby="ModalRegistroLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalRegistroLabel">Regístrate!!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="menAlerta1" class="modal-body">
+                        <div>
+                            <input id="regusuario" class="form-control" placeholder="Ingrese un usuario">
+                        </div>
+                        <div>
+                            <input id="regcorreo" class="form-control" placeholder="Ingrese su correo">
+                        </div>
+                        <div>
+                            <input id="regpassword" type="password" class="form-control" placeholder="Ingrese una contraseña">
+                        </div>
+                        <div>
+                            <input id="regequipo" class="form-control" placeholder="Ingrese el nombre del equipo">
+                        </div>
+                        
+                        <div>
+                            <button   id="butRegistrar">Registrar</button>
+                            <button type="button" class="btn btn-dark" id="butRegresar" data-bs-toggle="modal" data-bs-target="#ModalLogin" >Regresar</button>
+                            
+                        </div>
+                        <div id="alerta1"></div>
+                    </div>   
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                
+            </div>
+            <div class="col-8">
+                
+            </div>
+            <div class="col-1 hola">
+            </div>
+            <div class="col-1" id="login">
+                <div id="login1" class="hola2">
+                    <a class="link" data-bs-toggle="modal" data-bs-target="#ModalLogin">Login</a>
+                </div>
+                <div style="visibility:hidden;" id="login2"   class="dropdown hola">
+                    <a  class="link" id="dropdownMenuButton2" data-bs-toggle="dropdown" >
+                        
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item active" href="#">Torneo</a></li>
+                        <li><a class="dropdown-item" href="perfil.html">Mi Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Mi Equipo</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        
+    </body>
+</html>
+
