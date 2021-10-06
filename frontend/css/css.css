@@ -1,15 +1,32 @@
 .link{
     color: rgb(255, 187, 0);;
-    
     cursor: pointer;
 }
-#login{
-    padding: 5px;
+
+#login1{
+    padding: 0px;
+    margin-right: 0px;
+    margin-left: 73px;
 }
+#login2{
+    padding: 0px;
+    margin-right: 0px;
+    margin-left: 90px;
+    margin-top: -65px;
+	
+}
+
+img{
+    margin:10px auto;
+	display:block;
+    width: 50%;
+}
+
 body{
     background-image: url("../imagenes/fondomario.jpg");
     background-size: cover;
 }
+
 .container{
     padding-top: 50px;
 }
@@ -19,7 +36,8 @@ body{
     margin-top: -50px;
     display: flex;
 }
-#butGuardar, #butRegistrar{
+
+#butAcceder, #butRegistrar{
     background-color: black;
     color:orange;
     font-weight: bold;
@@ -28,9 +46,11 @@ body{
     margin-top:10px;
     margin-bottom: 10px;
 }
+
 #modal-header{
     width: 100%;
 }
+
 #ModalLoginLabel{
     width:90%;
     padding-left: 40%;
@@ -38,6 +58,7 @@ body{
     color: orange;
     font-weight: bold;
 }
+
 #ModalRegistroLabel{
     width:90%;
     padding-left: 30%;
@@ -45,12 +66,9 @@ body{
     color: orange;
     font-weight: bold;
 }
+
 .btn-close{
     width: 10%;
-}
-#butRegistrate{
-    width: 100%;
-    margin-bottom: 10px;
 }
 
 #butRegistrate2{
@@ -61,16 +79,15 @@ body{
 
 #ModalLogin{
     margin-top:5%;
-    width: 35%;
+    width: 36%;
     margin-left:32%;
     
-
 }
+
 #ModalRegistro{
     margin-top:5%;
     width: 35%;
-    margin-left:32%;
-    
+    margin-left:32%; 
 }
 
 #ModalCarritoLabel,#ModalHistorialLabel{
@@ -80,6 +97,16 @@ body{
     color: orange;
     font-weight: bold;
 }
+
 div{
     margin-bottom: 20px;
+}
+
+.a1{
+    font-size: 29px;
+}
+
+.menAlerta1{
+    color: blueviolet;
+    background-color: blueviolet;
 }

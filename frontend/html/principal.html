@@ -31,7 +31,7 @@
                             <button type="button" class="btn btn-light" id="butAcceder"></a>Acceder</a></button>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ModalRegistro" data-bs-dismiss="modal" id="butRegistrate"><a>Regístrate!</a></button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalRegistro" data-bs-dismiss="modal" id="butRegistrate">Regístrate!</button>
                         </div>
                         <div id="alerta2"></div>
                         </div>
@@ -44,12 +44,12 @@
         <!--Modal Registrate-->
         <div class="modal fade" id="ModalRegistro" tabindex="-1" aria-labelledby="ModalRegistroLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" id="modalT">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalRegistroLabel">Regístrate!!</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div id="menAlerta1" class="modal-body">
+                    <div id="menAlerta1" class="modal-body" >
                         <div>
                             <input id="regusuario" class="form-control" placeholder="Ingrese un usuario">
                         </div>
@@ -65,7 +65,7 @@
                         
                         <div>
                             <button   id="butRegistrar">Registrar</button>
-                            <button type="button" class="btn btn-dark" id="butRegresar" data-bs-toggle="modal" data-bs-target="#ModalLogin" >Regresar</button>
+                            <button type="button" class="btn btn-danger" id="butRegresar" data-bs-toggle="modal" data-bs-target="#ModalLogin" >Regresar</button>
                             
                         </div>
                         <div id="alerta1"></div>
@@ -75,36 +75,28 @@
         </div>
 
         <div class="row">
-            <div class="col-2">
-                
-            </div>
-            <div class="col-8">
-                
-            </div>
-            <div class="col-1 hola">
-            </div>
-            <div class="col-1" id="login">
+            <div class="col-9"></div>
+            <div class="col-3" id="login">
                 <div id="login1" class="hola2">
-                    <a class="link" data-bs-toggle="modal" data-bs-target="#ModalLogin">Login</a>
+                    <a class="link a1" data-bs-toggle="modal" data-bs-target="#ModalLogin">Iniciar Sección</a>
                 </div>
                 <div style="visibility:hidden;" id="login2"   class="dropdown hola">
-                    <a  class="link" id="dropdownMenuButton2" data-bs-toggle="dropdown" >
-                        
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="dropdownMenuButton2">
-                        <li><a class="dropdown-item active" href="#">Torneo</a></li>
-                        <li><a class="dropdown-item" href="perfil.html">Mi Perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Mi Equipo</a></li>
+                    <a  class="link a1" id="dropdownMenuButton2" data-bs-toggle="dropdown" ></a>
+                    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" id="ullogin" aria-labelledby="dropdownMenuButton2">
+                        <li><a class="dropdown-item link">Torneo</a></li>
+                        <li><a class="dropdown-item link" href="perfil.html" >Mi Perfil</a></li>
+                        <li><a class="dropdown-item link">Mi Equipo</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+                        <li><a class="dropdown-item link active" id="cerrarSec">Cerrar Sesión</a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div>
-
+            <img id="logon" src="../imagenes/E-SPORT.png">  
         </div>
         
     </body>
-</html>
-
+    </html>
+    
+    
