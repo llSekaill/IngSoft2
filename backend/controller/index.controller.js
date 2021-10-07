@@ -26,15 +26,14 @@ const insertpartLider = async (req, res) => {
     res.status(200).json(response.rows);
 }
 
-const insertOrganizar = async () => {
+/*const insertOrganizar = async () => {
     
-}
+}*/
 
 const loginpartLider = async (req, res) => {
     const {usuario, password} = req.body;
     const response = await pool.query('select * from partlider where usuario = $1 and password = $2',[usuario, password]);
     if(response.rowCount == 0){
-        console.log("Datos mal ingresado");
         res.status(200).json({msg : "Error"});
     }else{
         res.status(200).json(response.rows[0]);
@@ -51,6 +50,15 @@ const loginAdmin = async (req, res) => {
     }
 }
 
+const loginOrg = async (req, res) => {
+    const {orgname, orgpass} = req.body;
+    const response = await pool.query('select * from organizador where orgname = $1 and orgpass = $2',[orgname,orgpass])
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rows[0]);
+    }
+}
 
 /*
 const updateUsers = async (req, res) => {
@@ -73,7 +81,8 @@ module.exports = {
     selectpartLider,
     insertpartLider,
     loginpartLider,
-    loginAdmin
+    loginAdmin,
+    loginOrg
     //getUserData,
     //deleteUsers,
     //updateUsers
