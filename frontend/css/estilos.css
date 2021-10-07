@@ -1,0 +1,9 @@
+body {
+    background-image: url(https://i.pinimg.com/originals/7b/fb/3b/7bfb3b1aeb040e892693c01ae410fc27.png);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}

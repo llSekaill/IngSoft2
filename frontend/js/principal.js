@@ -149,12 +149,13 @@ const butAcceder = () => {
                                 respLoginA.json().then((dataA) => {
                                     console.log(dataA);
                                     if(dataA.msg != "Error"){
-                                        const login1 = document.getElementById('login1');   
+                                        /*const login1 = document.getElementById('login1');   
                                         const login2 = document.getElementById('login2');
                                         const butcerrar = document.getElementById('butX');
                                         login1.setAttribute("style","visibility:hidden;");
                                         login2.removeAttribute("style","visibility:hidden;");
-                                        login2.firstElementChild.innerHTML = dataA.adminname;
+                                        login2.firstElementChild.innerHTML = dataA.adminname;*/
+                                        window.location.href = "./InicioAdmin.html";
                                         var divAlerta = document.createElement('div');
                                         divAlerta.setAttribute("id","alerta2");
                                         document.getElementById('mensAlerta2').appendChild(divAlerta);
