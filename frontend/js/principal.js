@@ -16,37 +16,95 @@ const butRegistrar = () => {
     }else{
         const body = {
             usuario : regusuario,
-            correo : regusuario,
+            correo : regcorreo,
             password : regpassword,
             equipo : regequipo
         }
-        
-        fetch(`${URL_BASE}/insertpartLider`,
+
+       fetch(URL_BASE+"/selectConfirm",
         {
             method : 'POST',
             body : JSON.stringify(body),
             headers : {
                 "Content-type" : "application/json"
             }
-        }).then((respRegistrar) => {
-            if(respRegistrar.statusText == "OK"){           
-                var divAlerta = document.createElement('div');
-                divAlerta.setAttribute("class","alert alert-success");
-                divAlerta.setAttribute("id","alerta1");
-                divAlerta.innerHTML = "Felicidades ya esta registrado";
-                document.getElementById('menAlerta1').appendChild(divAlerta);
-            }
+        }).then((respConfim) => {
+            respConfim.json().then((dataC) => {
+                if(dataC.msg != "Error"){
+                    a = 0, b = 0, c =0;
+                    for (let i = 0; i < dataC.length; i++){
+                        if (dataC[i].correo == regcorreo && dataC[0].equipo == regequipo)  {
+                            a = 2;
+                        }else{
+                            if (dataC[i].correo == regcorreo){
+                                b = 1;
+                            }else{
+                                if(dataC[i].equipo == regequipo){
+                                    c =1;
+                                }
+                            }
+                        }
+                    }
+                    if(a == 2 || b+c == 2){
+                        var divAlerta = document.createElement('div');
+                        divAlerta.setAttribute("class","alert alert-danger");
+                        divAlerta.setAttribute("id","alerta1");
+                        divAlerta.innerHTML = "El correo y equipo ya se encuentra registrado. Por favor, cambie el correo y equipo!";
+                        document.getElementById('menAlerta1').appendChild(divAlerta);
+                        console.log("Cambie ambos valores");
+                    }else{
+                        if(b == 1){
+                            var divAlerta = document.createElement('div');
+                            divAlerta.setAttribute("class","alert alert-danger");
+                            divAlerta.setAttribute("id","alerta1");
+                            divAlerta.innerHTML = "El correo ya se encuentra registrado. Por favor, cambie el correo.";
+                            document.getElementById('menAlerta1').appendChild(divAlerta);
+                            console.log("Cambie el correo");
+                        }else{
+                            if(c == 1){
+                                var divAlerta = document.createElement('div');
+                                divAlerta.setAttribute("class","alert alert-danger");
+                                divAlerta.setAttribute("id","alerta1");
+                                divAlerta.innerHTML = "El equipo ya se encuentra registrado. Por favor, cambie el equipo.";
+                                document.getElementById('menAlerta1').appendChild(divAlerta);
+                                console.log("Cambie el equipo");
+                            }
+                        }
+                    }
+                    
+                }else{
+                    fetch(`${URL_BASE}/insertpartLider`,
+                   {
+                       method : 'POST',
+                       body : JSON.stringify(body),
+                       headers : {
+                           "Content-type" : "application/json"
+                       }
+                   }).then((respRegistrar) => {
+                       if(respRegistrar.statusText == "OK"){           
+                           var divAlerta = document.createElement('div');
+                           divAlerta.setAttribute("class","alert alert-success");
+                           divAlerta.setAttribute("id","alerta1");
+                           divAlerta.innerHTML = "Felicidades ya esta registrado";
+                           document.getElementById('menAlerta1').appendChild(divAlerta);
+                       }
+                   }).catch((error) => {
+                       console.error(error);
+                   });
+                   const tregusuario = document.getElementById('regusuario');
+                   const tregcorreo = document.getElementById('regcorreo');
+                   const tregpassword = document.getElementById('regpassword');
+                   const tregequipo = document.getElementById('regequipo');
+                   tregusuario.value = "";
+                   tregcorreo.value = "";
+                   tregpassword.value = "";
+                   tregequipo.value = "";
+                    console.log("No hay datos doable");
+                }
+            })
         }).catch((error) => {
             console.error(error);
         });
-        const tregusuario = document.getElementById('regusuario');
-        const tregcorreo = document.getElementById('regcorreo');
-        const tregpassword = document.getElementById('regpassword');
-        const tregequipo = document.getElementById('regequipo');
-        tregusuario.value = "";
-        tregcorreo.value = "";
-        tregpassword.value = "";
-        tregequipo.value = "";
     }
 }
 
@@ -191,6 +249,7 @@ const cerrarSec = (event) => {
     login2.setAttribute("style","visibility:hidden;");
     login1.removeAttribute("style","visibility:hidden;");
 }
+//El main
 var main = () => {
     document.querySelector("#butRegistrar").addEventListener("click", butRegistrar);
     document.querySelector("#butAcceder").addEventListener("click", butAcceder);

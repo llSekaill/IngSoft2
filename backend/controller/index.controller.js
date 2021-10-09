@@ -13,6 +13,19 @@ const selectpartLider = async (req, res) => {
     const response = await pool.query('select * from partlider');
     res.status(200).json(response.rows);
 }
+
+const selectConfirm = async (req, res) => {
+    
+    const{correo, equipo} = req.body;
+    const response = await pool.query('select * from partlider where correo = $1 or equipo = $2',[correo, equipo]);
+    console.log(response.rows);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+    
+}
 /*
 const getUserData = async (req, res) => {
     const id = req.params.id;
@@ -82,7 +95,8 @@ module.exports = {
     insertpartLider,
     loginpartLider,
     loginAdmin,
-    loginOrg
+    loginOrg,
+    selectConfirm
     //getUserData,
     //deleteUsers,
     //updateUsers
