@@ -1,0 +1,18 @@
+$principal: #0e0c0c;
+$pp: #1F9113;
+$primary: $pp;
+//$secondary: green;
+$modal-content-color: $principal;
+$modal-content-bg: $principal;
+$modal-content-border-color: $pp;
+$modal-header-border-color: $pp;
+$modal-content-border-width: 5px;
+$btn-close-color: $pp;
+$btn-close-width:            1.5em;
+$btn-close-height:           $btn-close-width;
+$table-border-color: $pp;
+$table-color: $pp;
+$table-border-width: 2px;
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

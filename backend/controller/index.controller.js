@@ -7,31 +7,109 @@ const pool = new Pool({
     port:'5432'
 })
 
-var logUsu;
-
 const selectpartLider = async (req, res) => {
     const response = await pool.query('select * from partlider');
     res.status(200).json(response.rows);
 }
 
+const perfilpartLider = async (req, res) => {
+    const {usuario} = req.body;
+    const response = await pool.query('select * from partlider where usuario = $1',[usuario]);
+    res.status(200).json(response.rows);
+}
+
 const selectConfirm = async (req, res) => {
-    
-    const{correo, equipo} = req.body;
+    const {correo, equipo} = req.body;
     const response = await pool.query('select * from partlider where correo = $1 or equipo = $2',[correo, equipo]);
-    console.log(response.rows);
     if(response.rowCount == 0){
         res.status(200).json({msg : "Error"});
     }else{
         res.status(200).json(response.rows);
     }
-    
 }
+
+const modicarConfirm = async (req, res) => {
+    const {usuario, correo, password} = req.body;
+    const response = await pool.query('select * from partlider where usuario = $1 or correo = $2 or password = $3',[usuario, correo, password]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+}
+
+const modicarpartLider = async (req, res) => {
+    const {usuario, correo, password} = req.body.body;
+    const usu = req.body.bodyZ.usuario;
+    console.log(req.body);
+    var response;
+    if(usuario != undefined && correo != undefined && password != undefined){
+        response = await pool.query('update partlider set usuario = $1, correo = $2, password = $3 where usuario = $4',[usuario,correo,password,usu]);
+    }else{
+        if(usuario != undefined && correo != undefined && password == undefined){
+            response = await pool.query('update partlider set usuario = $1, correo = $2 where usuario = $3',[usuario,correo,usu]);
+        }else{
+            if(usuario != undefined && correo == undefined && password != undefined){
+                response = await pool.query('update partlider set usuario = $1, password = $2 where usuario = $3',[usuario,password,usu]);
+            }else{
+                if(usuario == undefined && correo != undefined && password != undefined){
+                    response = await pool.query('update partlider set correo = $1, password = $2 where usuario = $3',[correo,password,usu]);
+                }else{
+                    if(usuario != undefined && correo == undefined && password == undefined){
+                        response = await pool.query('update partlider set usuario = $1 where usuario = $2',[usuario,usu]);
+                    }else{
+                        if(usuario == undefined && correo != undefined && password == undefined){
+                            response = await pool.query('update partlider set correo = $1 where usuario = $2',[correo,usu]);
+                        }else{
+                            if(usuario == undefined && correo == undefined && password != undefined){
+                                response = await pool.query('update partlider set password = $1 where usuario = $2',[password,usu]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json({msg : "OK"});
+    }
+}
+
 /*
 const getUserData = async (req, res) => {
     const id = req.params.id;
     const responde = await pool.query('select * from users where id = $1',[id]);
     res.status(200).json(responde.rows);
 }*/
+
+const selectIntegrantes = async (req, res) =>{
+    const {equipo} = req.body;
+    const response = await pool.query('select * from integrantes where equipo = $1',[equipo]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+}
+
+const insertIntegrantes = async (req, res) => {
+    const equipo = req.body.body.equipo;
+    const {nombre, apellido} = req.body.bodyZ;
+    const response = await pool.query('insert into integrantes (equipo, nombre, apellido) values ($1, $2, $3)', [equipo, nombre, apellido]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json({msg : "OK"});
+    }
+}
+
+const deleteIntegrantes = async (req, res) => {
+    const {equipo, nombre, apellido} = req.body;
+    const response = await pool.query('delete from integrantes where equipo = $1 and nombre = $2 and apellido = $3', [equipo, nombre, apellido]);
+    console.log(response);
+}
 
 const insertpartLider = async (req, res) => {
     const {usuario,correo,password,equipo} = req.body;
@@ -96,7 +174,13 @@ module.exports = {
     loginpartLider,
     loginAdmin,
     loginOrg,
-    selectConfirm
+    selectConfirm,
+    perfilpartLider,
+    modicarConfirm,
+    modicarpartLider,
+    selectIntegrantes,
+    insertIntegrantes,
+    deleteIntegrantes
     //getUserData,
     //deleteUsers,
     //updateUsers

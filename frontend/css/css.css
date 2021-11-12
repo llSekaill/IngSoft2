@@ -36,6 +36,20 @@ body{
     margin-top: -50px;
     display: flex;
 }
+.letrablanca3{
+    color: white;
+    font-weight: bold;
+    font-size: 45px;
+}
+.letrablanca2{
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+}
+.letrablanca{
+    color: white;
+    font-weight: bold;
+}
 
 #butAcceder, #butRegistrar{
     background-color: black;
@@ -45,6 +59,26 @@ body{
     border-width: 1px;
     margin-top:10px;
     margin-bottom: 10px;
+}
+
+#butEditar,#butAgreEqui{
+    font-weight: bold;
+}
+
+#butModiEqui,#butElimEqui{
+    font-weight: bold;
+    color: black;
+}
+
+#butRealizar,#butAgreEI{
+    font-weight: bold;
+    width: 74%;
+    margin-left: 13%;
+}
+#butRegresar1, #butRegresar2{
+    font-weight: bold;
+    width: 38%;
+    margin-left: 31%;
 }
 
 #modal-header{
@@ -75,19 +109,6 @@ body{
     color: orange;
     font-weight: bold;
     text-decoration: underline;
-}
-
-#ModalLogin{
-    margin-top:5%;
-    width: 36%;
-    margin-left:32%;
-    
-}
-
-#ModalRegistro{
-    margin-top:5%;
-    width: 35%;
-    margin-left:32%; 
 }
 
 #ModalCarritoLabel,#ModalHistorialLabel{
