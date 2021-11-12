@@ -156,3 +156,15 @@ table thead {
   background-color: maroon;
   color: white;
 }
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion {
+  color: sienna;
+  cursor: pointer;
+}
