@@ -168,6 +168,18 @@ const deleteUsers = async (req, res) => {
     res.json(`Useario ${id} fue eliminado`);
 }*/
 
+const getTorneo = async (req, res) => {
+    const response = await pool.query('SELECT * FROM db_torneo');
+    res.status(200).json(response.rows);
+}
+const createTorneo = async (req, res) => {
+    console.log(req.body)
+    const {NombreTorneo, Descripcion, FechaInicio, FechaFin, NumParticipantes, NumPartidas, PuntGanada, PuntEmpate, PuntPerdida } = req.body;
+    const response = await pool.query('INSERT INTO db_torneo (NombreTorneo,Descripcion,FechaInicio,FechaFin,NumParticipantes,NumPartidas,PuntGanada,PuntEmpate,PuntPerdida) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [NombreTorneo, Descripcion, FechaInicio, FechaFin, NumParticipantes, NumPartidas, PuntGanada, PuntEmpate, PuntPerdida]);
+    console.log(response);
+    res.status(200).json(response.rows)
+}
+
 module.exports = {
     selectpartLider,
     insertpartLider,
@@ -180,7 +192,9 @@ module.exports = {
     modicarpartLider,
     selectIntegrantes,
     insertIntegrantes,
-    deleteIntegrantes
+    deleteIntegrantes,
+    getTorneo,
+    createTorneo
     //getUserData,
     //deleteUsers,
     //updateUsers

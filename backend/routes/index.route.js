@@ -2,7 +2,7 @@ const {Router} = require('express');
 const router = Router();
 const {selectpartLider, insertpartLider, loginpartLider, loginAdmin, loginOrg, selectConfirm, 
     perfilpartLider, modicarConfirm, modicarpartLider, selectIntegrantes, insertIntegrantes,
-    deleteIntegrantes, getUserData, deleteUsers, updateUsers} = require('../controller/index.controller');
+    deleteIntegrantes, getTorneo, createTorneo,getUserData, deleteUsers, updateUsers} = require('../controller/index.controller');
 
 router.get('/selectpartLider', selectpartLider);
 router.post('/insertpartLider', insertpartLider);
@@ -16,6 +16,8 @@ router.post('/modicarpartLider', modicarpartLider);
 router.post('/selectIntegrantes', selectIntegrantes);
 router.post('/insertIntegrantes', insertIntegrantes);
 router.post('/deleteIntegrantes', deleteIntegrantes);
+router.get('/creartorneo', getTorneo);
+router.post('/creartorneo', createTorneo);
 //router.get('/users/:id', getUserData);
 //router.delete('/users/:id', deleteUsers);
 //router.put('/users/:id', updateUsers);

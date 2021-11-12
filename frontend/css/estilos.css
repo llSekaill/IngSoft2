@@ -1,9 +1,28 @@
 body {
-    background-image: url(https://i.pinimg.com/originals/7b/fb/3b/7bfb3b1aeb040e892693c01ae410fc27.png);
+    background-image: url("../imagenes/fondomario.jpg");
     height: 100%;
+    width: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     overflow: hidden;
 }
+.form {
+    width: 100%;
+    max-width: 650px;
+}
+.msjstyle {
+    border: 2px solid white;
+    padding: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 3px;
+    font-size: larger;
+    background-color: black;
+    font-family: fantasy;
+}
+ label {
+    font-family: monospace;
+    font-weight: 1000;
+ }
