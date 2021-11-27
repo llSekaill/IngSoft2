@@ -117,10 +117,6 @@ const insertpartLider = async (req, res) => {
     res.status(200).json(response.rows);
 }
 
-/*const insertOrganizar = async () => {
-    
-}*/
-
 const loginpartLider = async (req, res) => {
     const {usuario, password} = req.body;
     const response = await pool.query('select * from partlider where usuario = $1 and password = $2',[usuario, password]);
@@ -129,6 +125,7 @@ const loginpartLider = async (req, res) => {
     }else{
         res.status(200).json(response.rows[0]);
     }
+
 }
 
 const loginAdmin = async (req, res) => {
@@ -169,32 +166,99 @@ const deleteUsers = async (req, res) => {
 }*/
 
 const getTorneo = async (req, res) => {
-    const response = await pool.query('SELECT * FROM db_torneo');
-    res.status(200).json(response.rows);
+    const response = await pool.query('SELECT * FROM dbtorneo');
+    var fi;
+    var ff;
+    var nt;
+    var estado;
+    var utc = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+    var responseA;
+    for(let i=0; i<response.rowCount; i++){
+        fi = response.rows[i].fechainicio;
+        ff = response.rows[i].fechafin;
+        nt = response.rows[i].nombretorneo;
+        if(utc < fi){
+            estado = "ACTIVO";
+            responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);  
+        }else{
+            if(utc <= ff){
+                estado = "EN CURSO";
+                responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);
+            }else{
+                estado = "FINALIZADO";
+                responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);
+            }
+        }
+    }
+    const responseNew = await pool.query('SELECT * FROM dbtorneo');
+    res.status(200).json(responseNew.rows);
 }
 const createTorneo = async (req, res) => {
     console.log(req.body)
-    const {NombreTorneo, Descripcion, FechaInicio, FechaFin, NumParticipantes, NumPartidas, PuntGanada, PuntEmpate, PuntPerdida } = req.body;
-    const response = await pool.query('INSERT INTO db_torneo (NombreTorneo,Descripcion,FechaInicio,FechaFin,NumParticipantes,NumPartidas,PuntGanada,PuntEmpate,PuntPerdida) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [NombreTorneo, Descripcion, FechaInicio, FechaFin, NumParticipantes, NumPartidas, PuntGanada, PuntEmpate, PuntPerdida]);
+    const estado = "ACTIVO";
+    const {nombretorneo, descripcion, fechainicio, fechafin, numparticipantes, numequipo, numpartidas, puntganada, puntempate, puntperdida } = req.body;
+    const response = await pool.query('insert into dbtorneo (nombretorneo,descripcion,fechainicio,fechafin,numparticipantes,numequipo,numpartidas,puntganada,puntempate,puntperdida,estado) values ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)',[nombretorneo,descripcion,fechainicio,fechafin,numparticipantes,numequipo,numpartidas,puntganada,puntempate,puntperdida,estado]);
     console.log(response);
-    res.status(200).json(response.rows)
+    res.status(200).json(response.rows);
+
+}
+
+const searchtorneo = async (req, res) => {
+    const {nombretorneo} = req.body;
+    const response = await pool.query('select * from dbtorneo where nombretorneo = $1',[nombretorneo]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+}
+
+const buscarTorneoEquipo = async (req, res) => {
+    const {nomequipo} = req.body;
+    const response = await pool.query('select * from torneoequipo where nomequipo = $1',[nomequipo]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "No esta inscrito"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+}
+
+const limiteTorneoEquipo = async (req, res) => {
+    const {nomtorneo} = req.body;
+    const response = await pool.query('select * from torneoequipo where nomtorneo = $1',[nomtorneo]);
+    const responseA = await pool.query('select * from dbtorneo where nombretorneo = $1',[nomtorneo]);
+    if(response.rowCount == 0){
+        res.status(200).json({actualIns : response.rowCount,});
+    }else{
+        res.status(200).json({
+            actualIns : response.rowCount,
+            limiteEqu : responseA.rows[0].numequipo,
+            limiteInt : responseA.rows[0].numparticipantes
+        });
+    }
+}
+
+const limiteIntegrante = async (req, res) => {
+    const {equipo} = req.body;
+    const response = await pool.query('select * from integrantes where equipo = $1',[equipo]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "Error"});
+    }else{
+        res.status(200).json(response.rowCount);
+    }
+}
+
+
+const insertTorneoEquipo = async (req, res) => {
+    const {nomtorneo, nomequipo} = req.body;
+    const response = await pool.query('insert into torneoequipo (nomtorneo, nomequipo) values ($1, $2)',[nomtorneo, nomequipo]);
+    res.status(200).json(response.rows);
 }
 
 module.exports = {
-    selectpartLider,
-    insertpartLider,
-    loginpartLider,
-    loginAdmin,
-    loginOrg,
-    selectConfirm,
-    perfilpartLider,
-    modicarConfirm,
-    modicarpartLider,
-    selectIntegrantes,
-    insertIntegrantes,
-    deleteIntegrantes,
-    getTorneo,
-    createTorneo
+    selectpartLider, insertpartLider, loginpartLider, loginAdmin, loginOrg, selectConfirm, perfilpartLider,
+    modicarConfirm, modicarpartLider, selectIntegrantes, insertIntegrantes, deleteIntegrantes, getTorneo,
+    createTorneo, searchtorneo, buscarTorneoEquipo, limiteTorneoEquipo,limiteIntegrante, insertTorneoEquipo
     //getUserData,
     //deleteUsers,
     //updateUsers

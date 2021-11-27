@@ -3,10 +3,8 @@ body {
     height: 100%;
     width: 100%;
     background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    overflow: hidden;
+    position: absolute;
+    overflow: scroll;
 }
 .form {
     width: 100%;
@@ -22,7 +20,10 @@ body {
     background-color: black;
     font-family: fantasy;
 }
- label {
+label {
     font-family: monospace;
     font-weight: 1000;
- }
+}
+tbody:hover {
+    color: orange;
+}

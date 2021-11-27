@@ -150,6 +150,7 @@ const butAcceder = () => {
                             var divAlerta = document.createElement('div');
                             divAlerta.setAttribute("id","alerta2");
                             document.getElementById('mensAlerta2').appendChild(divAlerta);
+                            sessionStorage.loginPart = data.usuario;
                             butcerrar.click();
                         }else{ 
                             const bodyA = {
@@ -186,7 +187,7 @@ const butAcceder = () => {
                                         }).then((respLoginO) => {
                                             respLoginO.json().then((dataO) => {
                                                 if(dataO.msg != "Error"){
-                                                    window.location.href = "./registro_colaborador.html";
+                                                    window.location.href = "./clb_mostrartorneo.html";
                                                     var divAlerta = document.createElement('div');
                                                     divAlerta.setAttribute("id","alerta2");
                                                     document.getElementById('mensAlerta2').appendChild(divAlerta);
@@ -241,6 +242,7 @@ const cerrarSec = (event) => {
     const login2 = document.getElementById('login2');
     login2.setAttribute("style","visibility:hidden;");
     login1.removeAttribute("style","visibility:hidden;");
+    sessionStorage.removeItem("loginPart");
 }
 
 const butPerfil = () => {
@@ -712,7 +714,7 @@ const butEquipo = () => {
     });
 }
 
-const butAgreEI = () =>{
+const butAgreEI = () => {
     
     const idnombre = document.getElementById('idnombre').value;
     const idapellido = document.getElementById('idapellido').value;
@@ -757,8 +759,12 @@ const butAgreEI = () =>{
     }
 }
 
-const butRegresar2 = () =>{
+const butRegresar2 = () => {
     butEquipo();
+}
+
+const butTorneo = () => {
+    window.location.href = "./torneoPartLider.html";
 }
 
 //El main
@@ -775,5 +781,20 @@ var main = () => {
     document.querySelector("#butEquipo").addEventListener("click", butEquipo);
     document.querySelector("#butAgreEI").addEventListener("click", butAgreEI);
     document.querySelector("#butRegresar2").addEventListener("click", butRegresar2);
+    document.querySelector("#butTorneo").addEventListener("click", butTorneo);
 }
 window.addEventListener("load", main);
+
+function load(){
+    if(sessionStorage.loginPart != undefined){
+        const login1 = document.getElementById('login1');   
+        const login2 = document.getElementById('login2');
+        login1.setAttribute("style","visibility:hidden;");
+        login2.removeAttribute("style","visibility:hidden;");
+        login2.firstElementChild.innerHTML = sessionStorage.loginPart;
+    }else{
+        console.log("Esta vacio")
+    }
+    
+}
+window.onload = load;

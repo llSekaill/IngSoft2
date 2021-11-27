@@ -2017,17 +2017,17 @@ progress {
 .table {
   --bs-table-bg: transparent;
   --bs-table-accent-bg: transparent;
-  --bs-table-striped-color: #1F9113;
+  --bs-table-striped-color: white;
   --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
-  --bs-table-active-color: #1F9113;
+  --bs-table-active-color: white;
   --bs-table-active-bg: rgba(0, 0, 0, 0.1);
-  --bs-table-hover-color: #1F9113;
+  --bs-table-hover-color: white;
   --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
   width: 100%;
   margin-bottom: 1rem;
-  color: #1F9113;
+  color: white;
   vertical-align: top;
-  border-color: #1F9113;
+  border-color: #dee2e6;
 }
 
 .table > :not(caption) > * > * {

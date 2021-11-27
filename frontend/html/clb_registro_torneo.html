@@ -16,81 +16,84 @@
 </head>
 
 
-<body >
-<div class="container mb-4">
-	<div class="row justify-content-center pt-5 mt-5 ">
-		<form class=form id="formulario" action="" method="POST">
-				<div class="row justify-content-center text-white">	
+<body>
+	<div class="container mb-4">
+		<div id="div1" class="row justify-content-center pt-5 mt-5 ">
+			<div class=form id="formulario" action="" method="POST">
+				<div class="row justify-content-center text-white">
 					<h1 style="font-family: fantasy;">
 						REGISTRO DE TORNEO
 					</h1>
 				</div>
-			  	<div class="form-row  pt-5 text-white">
+				<div class="form-row  pt-5 text-white">
 					<div class="col-md-6 mb-3">
 						<label for="nombre">Nombre</label>
-						<input type="text" name="nombre" class="form-control" id="dt-nombre" placeholder="Nombre de torneo">
+						<input type="text" name="nombre" class="form-control" id="dt-nombre"
+							placeholder="Nombre de torneo">
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="descripcion">Descripción</label>
-						<input type="text" name="descripcion" class="form-control" id="dt-descripcion" placeholder="....." >
+						<input type="text" name="descripcion" class="form-control" id="dt-descripcion"
+							placeholder=".....">
 					</div>
 				</div>
-			  	<div class="form-row text-white">
+				<div class="form-row text-white">
 					<div class="col-md-6 mb-3">
 						<label for="finicio">Fecha de Inicio</label>
-						<input type="date" name="finicio" class="form-control" id="dt-finicio" aria-describedby="validationServer03Feedback">
+						<input type="date" name="finicio" class="form-control" id="dt-finicio"
+							aria-describedby="validationServer03Feedback">
 					</div>
 					<div class="col-md-6 mb-3">
 						<label for="ffinal">Fecha de Fin</label>
-						<input type="date" name="ffinal" class="form-control" id="dt-ffin" aria-describedby="validationServer03Feedback">
+						<input type="date" name="ffinal" class="form-control" id="dt-ffin"
+							aria-describedby="validationServer03Feedback">
 					</div>
-			  	</div>
-			  	<div class="form-row text-white">
-					<div class="col-md-6 mb-3" >
+				</div>
+				<div class="form-row text-white">
+					<div class="col-md-4 mb-3">
 						<label for="mcompetidores">Max. competidores</label>
-						<input type="number" name="mcompetidores" class="form-control" placeholder="0" id="dt-mcompetidores" >
+						<input type="number" name="mcompetidores" class="form-control" placeholder="0" id="dt-mcompetidores">
 					</div>
-					<div class="col-md-6 mb-3">
-				     	<label for="pdiarias">Partidas diarias</label>
-				     	<input type="number" name="pdiarias" class="form-control" placeholder="0" id="dt-pdiarias" >
-					</div>		    	
-			  	</div>
+					<div class="col-md-4 mb-3">
+						<label for="mequipo">Cantidad Max. equipos</label>
+						<input type="number" name="mequipo" class="form-control" placeholder="0" id="dt-mequipo">
+					</div>
+					<div class="col-md-4 mb-3">
+						<label for="pdiarias">Partidas diarias</label>
+						<input type="number" name="pdiarias" class="form-control" placeholder="0" id="dt-pdiarias">
+					</div>
+				</div>
 				<div class=" mb-3 text-white row justify-content-center text-uppercase">
-			   		<label for=""> Puntaje por partida </label>
+					<h5 class="bg-dark"> Puntaje por partida </h5>
 				</div>
 				<div class="container text-white">
-			   		<div class="row mb-5">
-					  	<div class="col-md-4" >
-						     <label for="pganada"> Ganada </label>
-						     <input type="number" name="pganada" class="form-control" placeholder="0" id="dt-pganada" >
+					<div class="row mb-5">
+						<div class="col-md-4">
+							<label for="pganada"> Ganada </label>
+							<input type="number" name="pganada" class="form-control" placeholder="0" id="dt-pganada">
 						</div>
 						<div class="col-md-4">
-						     <label for="pempatada"> Empate </label>
-						     <input type="number" name="pempatada"  class="form-control" placeholder="0" id="dt-pempatada" >
+							<label for="pempatada"> Empate </label>
+							<input type="number" name="pempatada" class="form-control" placeholder="0" id="dt-pempatada">
 						</div>
 						<div class="col-md-4">
-						     <label for="pperdida"> Perdida </label>
-						     <input type="number" name="pperdida" class="form-control" placeholder="0" id="dt-pperdida" >
-						</div>			  
-			   		</div>
-			   </div>
-			   <div class="form-row justify-content-center row mb-4">
+							<label for="pperdida"> Perdida </label>
+							<input type="number" name="pperdida" class="form-control" placeholder="0" id="dt-pperdida">
+						</div>
+					</div>
+				</div>
+				<div class="form-row justify-content-center row mb-4">
 					<div class="col-md-4">
-						<button class="btn btn-danger" type="reset">Limpiar</button>
+						<button class="btn btn-danger" onclick="limpiar()">Limpiar</button>
 					</div>
 					<div class="col-md-4">
-			 			<button id='btn-enviar' class="btn btn-danger" type="submit">Registrar torneo</button>
-	 				</div>
-			   </div>
-			   <div class="justify-content-center text-white mb-4 ">
-						<p id="msj-confirmacion" class="msjstyle"></p>
-		   		</div>
-		</form>	
+						<button id='btn-enviar' class="btn btn-danger" type="submit">Registrar torneo</button>
+					</div>
+				</div>
+				<div id="msj-confirmacion" class="justify-content-center text-white mb-4 msjstyle"></div>
+			</div>
+		</div>
 	</div>
-</div>
-<script src="../js/index_clb.js"></script>
+	<script src="../js/index_clb.js"></script>
 </body>
-
-
-
 </html>

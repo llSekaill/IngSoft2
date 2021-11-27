@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/torneoPartLider.css" type="text/css">
+        <link href="../css/css.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/scss.css" rel="stylesheet" >
+        <link rel="stylesheet" href="../css/datatables.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/datatables.min.js"></script>
+        <script src="../js/torneoPartLider.js"></script>
+        <title>Torneo</title>
+    </head>
+    <body class="container">
+        <div class="row">
+            <div class="col-5">
+                <label class="letrablanca">Nombre del lider del equipo:</label><br> 
+                <label id="torneoLoginPart" class="letrablanca3"></label>
+            </div>
+            <div class="col-5">
+                <label class="letrablanca">Nombre del equipo:</label><br> 
+                <label class="letrablanca3">"</label><label id="torneoEquiPart" class="letrablanca3"></label><label class="letrablanca3">"</label>
+            </div>
+            <div class="col-2 align-self-center">
+                <button id="regresarPrin" type="button" class="btn btn-danger" onclick="location.href='../html/principal.html'">Regresar principal</button>
+            </div>
+        </div>
+        <div class="container text-white">
+            <table id="example" class="display table table-hover text-nowrap bg-secondary text-white table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Torneos</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Fin</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div id="liveAlertPlaceholder"><div id="divMen"></div></div>
+        <div class="modal fade" id="modalmiEquipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content modal-lg">
+                    <div class="modal-header">
+                        <h5 class="modal-title letrablanca" id="staticBackdropLabel"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <label class="form-label letrablanca2">Puntuación del torneo: </label>
+                                    <label class="form-label letrablanca">Puntaje del ganador: <label id="puntGan"></label></label><br>
+                                    <label class="form-label letrablanca">Puntaje de empates: <label id="puntEmp"></label></label><br>
+                                    <label class="form-label letrablanca">Puntaje del perdedor: <label id="puntPer"></label></label>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label letrablanca2">Asignación: </label>
+                                    <label class="form-label letrablanca">Número de equipo para el torneo: <label id="numEqui"></label></label><br>
+                                    <label class="form-label letrablanca">Número de integrante por equipo: <label id="numInte"></label></label><br>
+                                    <label class="form-label letrablanca">Cantidad de partidas asignada: <label id="numPart"></label></label>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <label for="exampleFormControlTextarea1" class="form-label letrablanca2">Descripción:</label>
+                                    <textarea class="form-control" style="resize: none;" id="exampleFormControlTextarea1" name="" cols="20" rows="4" readonly></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    </html>
