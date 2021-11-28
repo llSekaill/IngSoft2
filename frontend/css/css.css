@@ -65,7 +65,7 @@ body{
     font-weight: bold;
 }
 
-#butModiEqui,#butElimEqui{
+#butModiEqui,#butElimEqui,#verTorneo,#regresarPrin{
     font-weight: bold;
     color: black;
 }

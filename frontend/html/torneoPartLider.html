@@ -18,16 +18,19 @@
     </head>
     <body class="container">
         <div class="row">
-            <div class="col-5">
+            <div class="col-4">
                 <label class="letrablanca">Nombre del lider del equipo:</label><br> 
                 <label id="torneoLoginPart" class="letrablanca3"></label>
             </div>
-            <div class="col-5">
+            <div class="col-4">
                 <label class="letrablanca">Nombre del equipo:</label><br> 
                 <label class="letrablanca3">"</label><label id="torneoEquiPart" class="letrablanca3"></label><label class="letrablanca3">"</label>
             </div>
             <div class="col-2 align-self-center">
-                <button id="regresarPrin" type="button" class="btn btn-danger" onclick="location.href='../html/principal.html'">Regresar principal</button>
+                <button id="verTorneo" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalverTorneo" >Ver torneos inscritos</button>
+            </div>
+            <div class="col-2 align-self-center">
+                <button id="regresarPrin" type="button" class="btn btn-warning" onclick="location.href='../html/principal.html'">Regresar pagina principal</button>
             </div>
         </div>
         <div class="container text-white">
@@ -81,6 +84,23 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ModalverTorneo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalLoginLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLoginLabel">Torneos</h5>
+                        <button id="butX" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <label class="form-label letrablanca2">Torneos inscritos :</label><br>
+                            <div id="labelHM">
+                            </div>
+                        </div>
+                    </div>
+                </div>   
             </div>
         </div>
     </body>

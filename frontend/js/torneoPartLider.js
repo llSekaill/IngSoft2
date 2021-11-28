@@ -27,8 +27,99 @@ const nombEquiTorneo = () => {
     });
 }
 
-const regresarPrin = () => {
-    console.log("regresar")
+const verTorneo = () => {
+    bodyVT= {
+        nomequipo : document.getElementById('torneoEquiPart').innerHTML
+    }
+    fetch(URL_BASE+"/buscarTorneoEquipo",
+    {
+        method : 'POST',
+        body : JSON.stringify(bodyVT),
+        headers : {
+            "Content-type" : "application/json"
+        }
+    }).then((respVT) => {
+        respVT.json().then((dataVT) => {
+            if(dataVT.msg == "No esta inscrito"){
+                const labelHm = document.createElement('label');
+                labelHm.setAttribute("class","form-label letrablanca");
+                labelHm.innerHTML = "Ningún torneo se ha inscrito";
+                const labelHM = document.getElementById('labelHM');
+                labelHM.append(labelHm);
+            }else{
+                const labelHM = document.getElementById('labelHM');
+                function removeAllChildNodes(parent) {
+                    while (parent.firstChild) {
+                        parent.removeChild(parent.firstChild);
+                    }
+                }
+                removeAllChildNodes(labelHM);
+                const divC = document.createElement('div');
+                divC.setAttribute("class","container-fluid");
+                labelHM.append(divC);
+                for(let i=0; i < dataVT.length; i++){
+                    const divRow = document.createElement('div');
+                    const divCol1 = document.createElement('div');
+                    const divCol2 = document.createElement('div');
+                    const labelHm = document.createElement('label');
+                    const buttonHm = document.createElement('button');
+                    divRow.setAttribute("class","row justify-content-between");
+                    divRow.setAttribute("id","row"+String(i));
+                    divCol1.setAttribute("class","col-md-9");
+                    divCol2.setAttribute("class","col-md-3");
+                    labelHm.setAttribute("class","form-label letrablanca");
+                    labelHm.setAttribute("id","labelTorn"+String(i));
+                    buttonHm.setAttribute("type","button");
+                    buttonHm.setAttribute("class","btn btn-danger");
+                    buttonHm.setAttribute("id","elimTorneo"+String(i));
+                    labelHm.innerHTML = String(dataVT[i].nomtorneo);
+                    buttonHm.innerHTML = "Eliminar";
+                    divC.append(divRow);
+                    divRow.append(divCol1);
+                    divRow.append(divCol2);
+                    divCol1.append(labelHm);
+                    divCol2.append(buttonHm);
+                    console.log(document.getElementById('labelTorn0').innerHTML);
+                }
+                for(let j=0; j<dataVT.length; j++){
+                    document.querySelector("#elimTorneo"+j).addEventListener("click", (event) => {
+                        const nomTorLabel = document.getElementById('labelTorn'+j).innerHTML;
+                        bodyCA = {
+                            nombretorneo : nomTorLabel
+                        }
+                        fetch(URL_BASE+"/searchtorneo",
+                        {
+                            method : 'POST',
+                            body : JSON.stringify(bodyCA),
+                            headers : {
+                                "Content-type" : "application/json"
+                            }
+                        }).then((respCA) => {
+                            respCA.json().then((dataCA) => {
+                                if(dataCA[0].estado != "ACTIVO"){
+                                    console.log("El torneo esta en curso o ha finalizado");
+                                }else{
+                                    const bodyElim = {
+                                        nomtorneo : nomTorLabel,
+                                        nomequipo : document.getElementById('torneoEquiPart').innerHTML
+                                    }
+                                    fetch(URL_BASE+"/deleteIntegTorneo",
+                                    {
+                                        method : 'POST',
+                                        body : JSON.stringify(bodyElim),
+                                        headers : {
+                                            "Content-type" : "application/json"
+                                        }
+                                    })
+                                    document.getElementById('row'+j).remove();
+                                }
+                            })
+                        })
+                    })
+                }
+            }
+        })
+    })
 }
 
 var main = () => {
@@ -58,7 +149,7 @@ var main = () => {
         });
     })
     $(document).on("click", ".butInfor", function(){
-        fila = $(this).closest("tr");
+        var fila = $(this).closest("tr");
         var nombTorneo = fila.find('td:eq(0)').text();
         const textArea = document.getElementById('exampleFormControlTextarea1');
         const tituloModal = document.getElementById('staticBackdropLabel');
@@ -96,8 +187,7 @@ var main = () => {
     })
 
     $(document).on("click", ".butInsc", function(){
-        
-        fila = $(this).closest("tr");
+        var fila = $(this).closest("tr");
         var estado = fila.find('td:eq(3)').text();
         var nombTorneo = fila.find('td:eq(0)').text();
         if(estado == "ACTIVO"){
@@ -241,7 +331,7 @@ var main = () => {
     })
     
     document.querySelector('#regresarPrin').addEventListener("click", regresarPrin);
-
+    document.querySelector('#verTorneo').addEventListener("click", verTorneo);
     let espanol = {
         "processing": "Procesando...",
         "lengthMenu": "Mostrar _MENU_ torneos",

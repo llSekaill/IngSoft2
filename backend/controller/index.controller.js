@@ -108,7 +108,6 @@ const insertIntegrantes = async (req, res) => {
 const deleteIntegrantes = async (req, res) => {
     const {equipo, nombre, apellido} = req.body;
     const response = await pool.query('delete from integrantes where equipo = $1 and nombre = $2 and apellido = $3', [equipo, nombre, apellido]);
-    console.log(response);
 }
 
 const insertpartLider = async (req, res) => {
@@ -255,10 +254,16 @@ const insertTorneoEquipo = async (req, res) => {
     res.status(200).json(response.rows);
 }
 
+const deleteIntegTorneo = async (req, res) => {
+    const {nomtorneo, nomequipo} = req.body;
+    const response = await pool.query('delete from torneoequipo where nomtorneo = $1 and nomequipo = $2', [nomtorneo, nomequipo]);
+}
+
 module.exports = {
     selectpartLider, insertpartLider, loginpartLider, loginAdmin, loginOrg, selectConfirm, perfilpartLider,
     modicarConfirm, modicarpartLider, selectIntegrantes, insertIntegrantes, deleteIntegrantes, getTorneo,
-    createTorneo, searchtorneo, buscarTorneoEquipo, limiteTorneoEquipo,limiteIntegrante, insertTorneoEquipo
+    createTorneo, searchtorneo, buscarTorneoEquipo, limiteTorneoEquipo,limiteIntegrante, insertTorneoEquipo,
+    deleteIntegTorneo
     //getUserData,
     //deleteUsers,
     //updateUsers
