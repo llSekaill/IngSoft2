@@ -143,7 +143,7 @@ var main = () => {
                 { "defaultContent": 
                         `<button class="btn btn-info bg-dark text-white butInfor" data-bs-toggle="modal" data-bs-target="#modalmiEquipo">Información</button>
                         <button class="btn btn-danger bg-dark text-white butInsc" > Inscribirse </button>
-                        <button class="btn btn-success bg-dark text-white butInsc" > Ver tabla de posición </button>` }
+                        <button class="btn btn-success bg-dark text-white butTabla" > Ver tabla de posición </button>` }
             ],//butInsc
             language: espanol,
             "pageLength" : 5,
