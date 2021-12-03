@@ -31,7 +31,7 @@ const verTorneo = () => {
     bodyVT= {
         nomequipo : document.getElementById('torneoEquiPart').innerHTML
     }
-    fetch(URL_BASE+"/buscarTorneoEquipo",
+    fetch(URL_BASE+"/buscarTorneoEquipo2",
     {
         method : 'POST',
         body : JSON.stringify(bodyVT),
@@ -40,6 +40,7 @@ const verTorneo = () => {
         }
     }).then((respVT) => {
         respVT.json().then((dataVT) => {
+            console.log(dataVT)
             if(dataVT.msg == "No esta inscrito"){
                 const labelHm = document.createElement('label');
                 labelHm.setAttribute("class","form-label letrablanca");
@@ -140,8 +141,9 @@ var main = () => {
                 { "data": 'fechafin' },
                 { "data": 'estado' },
                 { "defaultContent": 
-                        `<button class="btn btn-warning bg-dark text-white butInfor" data-bs-toggle="modal" data-bs-target="#modalmiEquipo">Información</button>
-                        <button class="btn btn-danger bg-dark text-white butInsc" > Inscribirse </button>` }
+                        `<button class="btn btn-info bg-dark text-white butInfor" data-bs-toggle="modal" data-bs-target="#modalmiEquipo">Información</button>
+                        <button class="btn btn-danger bg-dark text-white butInsc" > Inscribirse </button>
+                        <button class="btn btn-success bg-dark text-white butInsc" > Ver tabla de posición </button>` }
             ],//butInsc
             language: espanol,
             "pageLength" : 5,
@@ -203,6 +205,7 @@ var main = () => {
                 }
             }).then((respTorneo) => {
                 respTorneo.json().then((dataT) => {
+                    
                     bodyE = {
                         equipo : document.getElementById('torneoEquiPart').innerHTML
                     }
@@ -226,6 +229,9 @@ var main = () => {
                                 }
                                 alert('La cantidad de equipo esta completo para el torneo.', 'secondary');
                             }else{
+                                console.log(dataE)
+                                console.log(dataT)
+                                console.log(dataT.limiteInt)
                                 if(dataE != dataT.limiteInt){
                                     document.getElementById('divMen').remove();
                                     var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
@@ -237,7 +243,9 @@ var main = () => {
                                     }
                                     alert('Cantidad de integrantes no es aceptable, observe la información del torneo.', 'secondary');
                                 }else{
+                                    console.log(nombTorneo)
                                     bodyET = {
+                                        nomtorneo : nombTorneo,
                                         nomequipo : document.getElementById('torneoEquiPart').innerHTML
                                     }
                                     fetch(URL_BASE+"/buscarTorneoEquipo",
@@ -264,6 +272,7 @@ var main = () => {
                                                     nomtorneo : nombTorneo,
                                                     nomequipo : document.getElementById('torneoEquiPart').innerHTML
                                                 }
+                                                console.log(bodyIE)
                                                 fetch(URL_BASE+"/insertTorneoEquipo",
                                                 {
                                                     method : 'POST',
@@ -273,6 +282,7 @@ var main = () => {
                                                     }
                                                 }).then((respIE) => {
                                                     respIE.json().then((dataIE) => {
+                                                        console.log(dataIE)
                                                         document.getElementById('divMen').remove();
                                                         var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
                                                         function alert(message, type) {

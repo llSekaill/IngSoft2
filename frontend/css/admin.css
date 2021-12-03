@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url("../imagenes/fondomario.jpg");
+  background-image: url("./Fondos/fondomario.jpg");
 }
 
 /* Crear usuario */
@@ -167,4 +167,61 @@ table thead {
 .accordion {
   color: sienna;
   cursor: pointer;
+}
+
+/* ---------------Editar Usuario-----------  */
+
+.usuarios-fix {
+  width: 1000px;
+  height: 700px;
+  background: gold;
+  padding: 40px;
+  margin: auto;
+  margin-top: 100px;
+  border-width: 10px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: sienna;
+  border-color: maroon;
+}
+
+.usuarios-fix a {
+  font-size: 20px;
+}
+
+.usuarios-fix h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.ronda {
+  background-color: sienna;
+  align-items: center;
+  margin: 20px;
+  padding: 10px;
+  margin-bottom: 100px;
+  width: 100%;
+}
+
+.container-total .accordion {
+  color: white;
+}
+
+.container-total .ronda {
+  color: white;
+}
+
+.container-total a {
+  font-size: 30px;
+}
+
+.container-total .container {
+  display: flex;
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
 }

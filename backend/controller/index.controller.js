@@ -213,6 +213,16 @@ const searchtorneo = async (req, res) => {
 }
 
 const buscarTorneoEquipo = async (req, res) => {
+    const {nomtorneo, nomequipo} = req.body;
+    const response = await pool.query('select * from torneoequipo where nomtorneo=$1 and nomequipo = $2',[nomtorneo, nomequipo]);
+    if(response.rowCount == 0){
+        res.status(200).json({msg : "No esta inscrito"});
+    }else{
+        res.status(200).json(response.rows);
+    }
+}
+
+const buscarTorneoEquipo2 = async (req, res) => {
     const {nomequipo} = req.body;
     const response = await pool.query('select * from torneoequipo where nomequipo = $1',[nomequipo]);
     if(response.rowCount == 0){
@@ -227,7 +237,11 @@ const limiteTorneoEquipo = async (req, res) => {
     const response = await pool.query('select * from torneoequipo where nomtorneo = $1',[nomtorneo]);
     const responseA = await pool.query('select * from dbtorneo where nombretorneo = $1',[nomtorneo]);
     if(response.rowCount == 0){
-        res.status(200).json({actualIns : response.rowCount,});
+        res.status(200).json({
+            actualIns : response.rowCount,
+            limiteEqu : responseA.rows[0].numequipo,
+            limiteInt : responseA.rows[0].numparticipantes
+        });
     }else{
         res.status(200).json({
             actualIns : response.rowCount,
@@ -259,11 +273,40 @@ const deleteIntegTorneo = async (req, res) => {
     const response = await pool.query('delete from torneoequipo where nomtorneo = $1 and nomequipo = $2', [nomtorneo, nomequipo]);
 }
 
+const getTorneo2 = async (req, res) => {
+    const response = await pool.query('SELECT * FROM dbtorneo');
+    var fi;
+    var ff;
+    var nt;
+    var estado;
+    var utc = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+    var responseA;
+    for(let i=0; i<response.rowCount; i++){
+        fi = response.rows[i].fechainicio;
+        ff = response.rows[i].fechafin;
+        nt = response.rows[i].nombretorneo;
+        if(utc < fi){
+            estado = "ACTIVO";
+            responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);
+        }else{
+            if(utc <= ff){
+                estado = "EN CURSO";
+                responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);
+            }else{
+                estado = "FINALIZADO";
+                responseA = await pool.query('update dbtorneo set estado = $1 where nombretorneo = $2',[estado, nt]);
+            }
+        }
+    }
+    const responseNew = await pool.query('SELECT * FROM dbtorneo WHERE estado=$1',["EN CURSO"]);
+    res.status(200).json(responseNew.rows);
+}
+
 module.exports = {
     selectpartLider, insertpartLider, loginpartLider, loginAdmin, loginOrg, selectConfirm, perfilpartLider,
     modicarConfirm, modicarpartLider, selectIntegrantes, insertIntegrantes, deleteIntegrantes, getTorneo,
     createTorneo, searchtorneo, buscarTorneoEquipo, limiteTorneoEquipo,limiteIntegrante, insertTorneoEquipo,
-    deleteIntegTorneo
+    deleteIntegTorneo, getTorneo2, buscarTorneoEquipo2
     //getUserData,
     //deleteUsers,
     //updateUsers
