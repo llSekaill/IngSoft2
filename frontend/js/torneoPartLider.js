@@ -205,7 +205,6 @@ var main = () => {
                 }
             }).then((respTorneo) => {
                 respTorneo.json().then((dataT) => {
-                    
                     bodyE = {
                         equipo : document.getElementById('torneoEquiPart').innerHTML
                     }
@@ -229,9 +228,6 @@ var main = () => {
                                 }
                                 alert('La cantidad de equipo esta completo para el torneo.', 'secondary');
                             }else{
-                                console.log(dataE)
-                                console.log(dataT)
-                                console.log(dataT.limiteInt)
                                 if(dataE != dataT.limiteInt){
                                     document.getElementById('divMen').remove();
                                     var alertPlaceholder = document.getElementById('liveAlertPlaceholder');
@@ -339,8 +335,7 @@ var main = () => {
             }
         }
     })
-    
-    document.querySelector('#regresarPrin').addEventListener("click", regresarPrin);
+        document.querySelector('#regresarPrin').addEventListener("click", regresarPrin);
     document.querySelector('#verTorneo').addEventListener("click", verTorneo);
     let espanol = {
         "processing": "Procesando...",
